@@ -1,0 +1,40 @@
+version: "2.2"
+
+networks:
+  gcp-boot:
+    external: 
+      name: gcp-boot-demo
+
+services:
+  eureka-server:
+    restart: always
+    mem_limit: 512m
+    build: eureka-server
+    image: eureka-server
+    container_name: eureka-server
+    ports:
+      - 8761:8761
+    networks:
+      - gcp-boot
+
+  api-gateway:
+    restart: always
+    mem_limit: 512m
+    build: api-gateway
+    image: api-gateway
+    container_name: api-gateway
+    ports:
+      - 8010:8010
+    networks:
+      - gcp-boot
+
+  employee-service:
+    restart: always
+    mem_limit: 512m
+    build: employee-service
+    image: employee-service
+    container_name: employee-service
+    ports:
+      - 8011:8011
+    networks:
+      - gcp-boot
