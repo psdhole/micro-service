@@ -16,6 +16,16 @@ eureka:
 spring:
   application:
     name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: employee-service
+          uri: lb://employee-service
+          predicates:
+            - Path=/employee/**
 
 management:
   security:
