@@ -9,7 +9,7 @@ services:
   eureka-server:
     restart: always
     mem_limit: 512m
-    build: eureka-server
+    build: eureka-server/.
     image: eureka-server
     container_name: eureka-server
     ports:
@@ -20,7 +20,7 @@ services:
   api-gateway:
     restart: always
     mem_limit: 512m
-    build: api-gateway
+    build: api-gateway/.
     image: api-gateway
     container_name: api-gateway
     ports:
@@ -31,7 +31,7 @@ services:
   employee-service:
     restart: always
     mem_limit: 512m
-    build: employee-service
+    build: employee-service/.
     image: employee-service
     container_name: employee-service
     ports:
