@@ -1,11 +1,12 @@
 server:
-  port: 8010    #port number
+  port: 8010    
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 2
+    hostname: api-gateway
   client:
+    registerWithEureka : true
+    fetchRegistry : true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://eureka-server.default.svc.cluster.local:8761/eureka}
     healthcheck:
@@ -16,17 +17,11 @@ eureka:
 spring:
   application:
     name: api-gateway
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: employee-service
-          uri: lb://employee-service
-          predicates:
-            - Path=/employee-service/**
-
+zuul:
+  routes:
+    employee-service: 
+          path: /employee-service/**
+          serviceId: employee-service
 management:
   security:
     enabled: false

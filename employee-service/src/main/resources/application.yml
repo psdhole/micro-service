@@ -3,8 +3,7 @@ server:
  
 eureka:         
   instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 2
+    hostname: employee-service
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://eureka-server.default.svc.cluster.local:8761/eureka}
