@@ -7,9 +7,10 @@ server:
 
 eureka:
   instance:
-    hostname: api-gateway
+      preferIpAddress: true
+      hostname: $SERVICE_NAME
   client:
-    registerWithEureka: true
+    registerWithEureka: false
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://eureka-server.default.svc.cluster.local:8761/eureka}

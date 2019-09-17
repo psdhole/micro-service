@@ -38,7 +38,7 @@ public class EmployeeServiceController {
         return employee;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Employee> getAllEmployee() {
         log.debug("Getting list of employees..");
         return new ArrayList<Employee>(employeeData.values());

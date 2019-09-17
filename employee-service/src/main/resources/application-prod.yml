@@ -7,7 +7,8 @@ server:
 
 eureka:
   instance:
-    hostname: employee-service
+    preferIpAddress: true
+    hostname: $SERVICE_NAME
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://eureka-server.default.svc.cluster.local:8761/eureka}
