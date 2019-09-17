@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: employee-service
+
+server:
+  port: 8011
+
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: $SERVICE_NAME
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://eureka-server.default.svc.cluster.local:8761/eureka}
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+management:
+  security:
+    enabled: false
+
+logging:
+  level:
+    com.service.employee: DEBUG

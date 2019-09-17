@@ -13,7 +13,12 @@ eureka:
 management:
   security:
     enabled: false
+
 spring:
   boot:
     admin:
-      context-path: /admin  #A different context path for admin server has been provided not conflicting with eureka
+      context-path: /admin
+
+logging:
+  level:
+    com.service.eureka: DEBUG

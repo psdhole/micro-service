@@ -1,1 +1,1 @@
-cd employee-service && mvn clean install && cd ../eureka-server && mvn clean install && cd ../api-gateway && mvn clean install && cd ../  && docker-compose up --build -d  && pause
+mvn clean install && docker-compose up --build -d

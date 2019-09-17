@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 8010
+
+eureka:
+  instance:
+      preferIpAddress: true
+      hostname: $SERVICE_NAME
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://eureka-server.default.svc.cluster.local:8761/eureka}
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+zuul:
+  routes:
+    employee-service:
+      path: /employee-service/**
+      serviceId: employee-service
+
+management:
+  security:
+    enabled: false
+
+logging:
+  level:
+    com.service.apigateway: DEBUG

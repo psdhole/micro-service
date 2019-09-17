@@ -1,25 +1,4 @@
-server:
-  port: 8011    
- 
-eureka:         
-  instance:
-    hostname: employee-service
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://eureka-server.default.svc.cluster.local:8761/eureka}
-    healthcheck:
-      enabled: true
-    lease:
-      duration: 5
- 
-spring:    
-  application:
-    name: employee-service   
-     
-management:
-  security:
-    enabled: false  
- 
-logging:
-  level:
-    com.self.sprintboot.learning.employee: DEBUG
+spring:
+  profiles:
+    active:
+      - "dev"
