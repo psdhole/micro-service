@@ -1,5 +1,5 @@
-# micro-service
-micro-services
+# employee-management-micro-services
+Demo micro-service based application for employee information management 
 
 ## How to
 
@@ -13,43 +13,55 @@ micro-services
 
 #Create cluster
 
-    gcloud container clusters create gcp-boot-demo --num-nodes 2  --machine-type n1-standard-1  --zone us-central1-c 
+    gcloud container clusters create <cluster-name> --num-nodes <num of nodes in cluster>  --machine-type n1-standard-1  --zone <zone-name> 
+
+    e.g. 
+        gcloud container clusters create gcp-boot-demo-cluster --num-nodes 2  --machine-type n1-standard-1  --zone us-central1-c    
 
 #get cluster credentials
 
-    gcloud container clusters get-credentials  --zone us-central1-a	 gcp-boot-demo-cluster
+    gcloud container clusters get-credentials  --zone <cluster-zone-name> <cluster-name>
+    
+    e.g.
+        gcloud container clusters get-credentials  --zone us-central1-c	 gcp-boot-demo-cluster
 
 #Build and run the service
 
-	- Go to the service dir
-		
-        cd <path>/micro-service/employee-service	
-		
-	- Build the service
-				
-	    mvn clean install
-		
-	- Create docker image for the service	
-		
-		docker build -t gcr.io/striking-shift-248504/eureka-server .
+    Set spring boot app profiles to "prod"
+    
+        e.g. 
+            - edit below files
+            
+                1 : ..\employee-service\src\main\resources\application.yml
+                2 : ..\api-gateway\src\main\resources\application.yml
+            
+            - add the active profile as follows 
+            
+                  spring:
+                    profiles:
+                        active:
+                            - "prod"
+                     
+	Grant permission to run all scripts files.
+	   
+	   cd <path>/micro-service
+	   chmod 777 *.sh
 	
-	- Push the image to container registry so that it will be available while running it in kubernatee cluster. 
-	
-		First, configure Docker command-line tool to authenticate to Container Registry (you need to run this only once):
-	
-			gcloud auth configure-docker
+	Run below scripts to deploy all the applications on GKE.
+	  
+	  	cd <path>/micro-service    
+	   ./run-gcp.sh <project-id>
+	   
+	   e.g.
+	         cd /home/pushparaj_dhole23/micro-service
+	        ./run-gcp.sh striking-shift-248504
 
-		Push the images with below command
+#Endpoints to use
+    Below endpoint will be available for the use once all the service gets deployed.
+    
+    http://<public-ip-of-api-gateway-service>:8010/employee-service/employee/ 
 		
-			docker push gcr.io/striking-shift-248504/eureka-server .
-
-	- Run the service in kubernates POD
-	
-		kubectl run  eureka-server  --image=gcr.io/striking-shift-248504/eureka-server  --port=8761
-
-	- Expose service with expose option on UI to acces it publicly 		
-	
-	- Do all above steps for each of the service
+      
 
              
 
