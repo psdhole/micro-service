@@ -23,6 +23,8 @@ services:
     build: api-gateway/.
     image: api-gateway
     container_name: api-gateway
+    depends_on:
+      - eureka-server
     ports:
       - 8010:8010
     networks:
@@ -34,6 +36,8 @@ services:
     build: employee-service/.
     image: employee-service
     container_name: employee-service
+    depends_on:
+      - eureka-server
     ports:
       - 8011:8011
     networks:
