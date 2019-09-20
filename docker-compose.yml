@@ -18,6 +18,7 @@ services:
       - gcp-boot
 
   api-gateway:
+
     restart: always
     mem_limit: 512m
     build: api-gateway/.
