@@ -12,6 +12,6 @@ public class EmployeeServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeServiceApplication.class, args);
-		log.debug("Api Gateway Application started..!!");
+		log.debug("Employee Service started..!!");
 	}
 }
