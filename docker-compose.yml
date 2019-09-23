@@ -2,7 +2,7 @@ version: "2.2"
 
 networks:
   gcp-boot:
-    external: 
+    external:
       name: gcp-boot-demo
 
 services:

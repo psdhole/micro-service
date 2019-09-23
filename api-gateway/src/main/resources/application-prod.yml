@@ -7,8 +7,8 @@ server:
 
 eureka:
   instance:
-      preferIpAddress: true
-      hostname: $SERVICE_NAME
+    preferIpAddress: true
+    hostname: $SERVICE_NAME
   client:
     registerWithEureka: false
     fetchRegistry: true

@@ -10,8 +10,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @Slf4j
 public class EmployeeServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EmployeeServiceApplication.class, args);
-		log.debug("Employee Service started..!!");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EmployeeServiceApplication.class, args);
+        log.debug("Employee Service started..!!");
+    }
 }
