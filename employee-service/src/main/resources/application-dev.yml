@@ -13,11 +13,14 @@ spring:
       hibernate:
         default_schema: "emp"
     hibernate:
-      ddl-auto: "update"
+      ddl-auto: "create-update"
     show-sql: true
     generate-ddl: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  jackson:
+    default-property-inclusion: non_null
 
 server:
   port: 8011

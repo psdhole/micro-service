@@ -16,9 +16,9 @@ public class EmployeeServiceController {
     private EmployeeService employeeService;
 
     @GetMapping("/status")
-    public EmployeeDTO getServiceStatus() {
+    public String getServiceStatus() {
         log.debug("Checking status of employee service..");
-        return new EmployeeDTO(null, "Service is up..!!", "success");
+        return "success";
     }
 
     @GetMapping("/{id}")
@@ -30,18 +30,20 @@ public class EmployeeServiceController {
     @GetMapping("/")
     public EmployeeDTO getAllEmployees() {
         log.debug("getting list of employees..");
-        return employeeService.findAllEmloyees();
+        return employeeService.findAllEmployees();
     }
 
     @PostMapping("/")
-    public EmployeeDTO createEmployee(@RequestBody Employee employee) {
-        log.debug("creating new employee : {}", employee);
+    public EmployeeDTO createEmployee(@RequestBody EmployeeDTO employeeDto) {
+        log.debug("creating new employee : {}", employeeDto.getEmployee());
+        Employee employee = employeeDto.getEmployee();
         return employeeService.save(employee);
     }
 
     @PutMapping("/{id}")
-    public EmployeeDTO updateEmployee(@RequestBody Employee employee, @PathVariable Long id) {
+    public EmployeeDTO updateEmployee(@RequestBody EmployeeDTO employeeDto, @PathVariable Long id) {
         log.debug("updating employee with id : {}", id);
-        return employeeService.update(id, employee);
+        Employee employee = employeeDto.getEmployee();
+        return employeeService.updateEmployee(id, employee);
     }
 }

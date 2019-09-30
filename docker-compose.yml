@@ -18,7 +18,6 @@ services:
       - gcp-boot
 
   api-gateway:
-
     restart: always
     mem_limit: 512m
     build: api-gateway/.
@@ -43,3 +42,19 @@ services:
       - 8011:8011
     networks:
       - gcp-boot
+
+#  postgres:
+#    image: postgres
+#    hostname: postgres
+#    container_name: postgres
+#    environment:
+#      - POSTGRES_PASSWORD=root
+#      - POSTGRES_USER=root
+#      - POSTGRES_DB=empdb
+#    ports:
+#      - 5432:5432
+#    volumes:
+#      - postgres-db:/var/lib/postgresql/data
+#    networks:
+#      - gcp-boot
+

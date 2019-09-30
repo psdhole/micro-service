@@ -2,6 +2,25 @@ spring:
   application:
     name: employee-service
 
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/empdb
+    username: root
+    password: root
+
+    jpa:
+      properties:
+        hibernate:
+          default_schema: "emp"
+      hibernate:
+        ddl-auto: "create-update"
+      show-sql: true
+      generate-ddl: true
+      database: postgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+    jackson:
+      default-property-inclusion: non_null
 server:
   port: 8011
 
@@ -24,3 +43,5 @@ management:
 logging:
   level:
     com.service.employee: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
