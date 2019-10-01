@@ -39,10 +39,10 @@ public class EmployeeService {
 
     public EmployeeDTO updateEmployee(Long id, Employee employee) {
         log.debug("updating employee with id {} ", id);
-        boolean exists = employeeRepository.exists(id);
+        boolean exists = employeeRepository.existsById(id);
         Employee updatedEmployee = Employee.builder().build();
         if (exists) {
-            Employee employeeToUpdate = employeeRepository.findOne(id);
+            Employee employeeToUpdate = employeeRepository.findById(id).get();
             employeeToUpdate.setAddress(employee.getAddress());
             employeeToUpdate.setName(employee.getName());
             updatedEmployee = employeeRepository.save(employeeToUpdate);
@@ -52,17 +52,17 @@ public class EmployeeService {
 
     public EmployeeDTO findEmployeeById(Long id) {
         log.debug("searching employee with id {} ", id);
-        Employee employee = employeeRepository.findOne(id);
+        Employee employee = employeeRepository.findById(id).get();
         return EmployeeServiceUtil.createResponseDto(employee, EmployeeServiceConstants.MSG_EMP_FOUND, EmployeeServiceConstants.STATUS_SUCCESS);
     }
 
     public EmployeeDTO deleteEmployeeById(Long id) {
         log.debug("deleting employee with id {} ", id);
-        boolean exists = employeeRepository.exists(id);
+        boolean exists = employeeRepository.existsById(id);
         Employee deletedEmployee = Employee.builder().build();
         if (exists) {
-            deletedEmployee = employeeRepository.findOne(id);
-            employeeRepository.delete(id);
+            deletedEmployee = employeeRepository.findById(id).get();
+            employeeRepository.deleteById(id);
         }
         return EmployeeServiceUtil.createResponseDto(deletedEmployee, EmployeeServiceConstants.MSG_EMP_DELETED, EmployeeServiceConstants.STATUS_SUCCESS);
     }
